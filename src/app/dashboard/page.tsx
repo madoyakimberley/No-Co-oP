@@ -1,34 +1,36 @@
+"use client";
+import { useEffect, useState } from "react";
+
 export default function Dashboard() {
+  const [exerciseCount, setExerciseCount] = useState(0);
+  const [skillCount, setSkillCount] = useState(0);
+  const key = process.env.NEXT_PUBLIC_APP_SECRET || "";
+
+  useEffect(() => {
+    fetch("/api/exercise-logs", { headers: { "x-api-key": key } }).then((r) => r.json()).then((d) => setExerciseCount(d.length));
+    fetch("/api/skill-practice", { headers: { "x-api-key": key } }).then((r) => r.json()).then((d) => setSkillCount(d.length));
+  }, []);
+
   return (
     <main className="min-h-screen bg-background text-text-primary p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-semibold">LVL 42 HERO</h1>
-          <p className="text-text-secondary text-sm">Streak: 15 Days</p>
+          <p className="text-text-secondary text-sm">{exerciseCount} workouts logged</p>
         </div>
         <div className="card px-4 py-2">
           <p className="text-xs text-text-secondary">COMMAND CENTER</p>
         </div>
       </div>
 
-      <div className="card p-4 mb-4">
-        <div className="flex justify-between items-center mb-2">
-          <p className="text-sm text-text-secondary">STAKES METER</p>
-          <span className="text-error text-xs">HIGH</span>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="card p-4">
+          <p className="text-sm text-text-secondary mb-1">Skill Reps</p>
+          <p className="text-3xl text-primary">{skillCount}</p>
         </div>
-        <div className="h-2 bg-surface-lowest rounded-full overflow-hidden">
-          <div className="h-full bg-error w-3/4" />
-        </div>
-      </div>
-
-      <div className="card p-4">
-        <p className="text-sm text-text-secondary mb-3">TODAY'S GAUNTLET</p>
-        <div className="border border-border rounded-card p-4">
-          <p className="font-medium mb-1">Deep Work Sprint</p>
-          <p className="text-xs text-text-secondary mb-3">Motivational text</p>
-          <button className="btn-primary px-4 py-2 text-sm">
-            COMMIT / TRY NOW
-          </button>
+        <div className="card p-4">
+          <p className="text-sm text-text-secondary mb-1">Workouts</p>
+          <p className="text-3xl text-tertiary">{exerciseCount}</p>
         </div>
       </div>
     </main>
