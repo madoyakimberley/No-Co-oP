@@ -11,6 +11,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "No Co-op",
   description: "Precision in Darkness",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
