@@ -51,3 +51,18 @@ export const meals = mysqlTable("meals", {
   suggestedByAi: boolean("suggested_by_ai").default(false),
   loggedAt: timestamp("logged_at").defaultNow(),
 });
+
+export const topics = mysqlTable("topics", {
+  id: int("id").autoincrement().primaryKey(),
+  subjectId: int("subject_id").notNull(),
+  name: varchar("name", { length: 150 }).notNull(),
+  masteryLevel: int("mastery_level").default(0),
+});
+
+export const quizAttempts = mysqlTable("quiz_attempts", {
+  id: int("id").autoincrement().primaryKey(),
+  topicId: int("topic_id").notNull(),
+  question: text("question").notNull(),
+  correct: boolean("correct"),
+  attemptedAt: timestamp("attempted_at").defaultNow(),
+});
