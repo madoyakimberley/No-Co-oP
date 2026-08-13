@@ -51,10 +51,17 @@ npm install
 ```
 
 Create `.env.local` with:
+
 DB_PASSWORD="..."
-APP_SECRET="..." # generate with: openssl rand -hex 32
+
+APP_SECRET="..." 
+
+# generate with: openssl rand -hex 32
+
 NEXT_PUBLIC_APP_SECRET="..." # MUST match APP_SECRET exactly
-GEMINI_API_KEY="..." # from ai.google.dev
+GEMINI_API_KEY="..."
+
+# from ai.google.dev
 
 
 Copy to `.env` as well (Drizzle Kit CLI doesn't read `.env.local`):
