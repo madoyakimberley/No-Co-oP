@@ -10,6 +10,8 @@ type RoutineBlock = {
   category: string;
 };
 
+const key = process.env.NEXT_PUBLIC_APP_SECRET || "";
+
 export default function Routine() {
   const [blocks, setBlocks] = useState<RoutineBlock[]>([]);
   const [label, setLabel] = useState("");
@@ -19,7 +21,7 @@ export default function Routine() {
   const [category, setCategory] = useState("school");
 
   const load = async () => {
-    const res = await fetch("/api/routine-blocks");
+    const res = await fetch("/api/routine-blocks", { headers: { "x-api-key": key } });
     setBlocks(await res.json());
   };
 
@@ -30,7 +32,7 @@ export default function Routine() {
   const addBlock = async () => {
     await fetch("/api/routine-blocks", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "x-api-key": key },
       body: JSON.stringify({ label, dayOfWeek, startTime, endTime, category, activeDuringSchool: true }),
     });
     setLabel("");

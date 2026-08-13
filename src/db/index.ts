@@ -18,7 +18,7 @@ const pool =
     enableKeepAlive: true,
     keepAliveInitialDelay: 10000,
     connectTimeout: 10000,
-    ssl: { rejectUnauthorized: true },
+    ssl: { rejectUnauthorized: false },
   });
 
 if (process.env.NODE_ENV !== "production") {

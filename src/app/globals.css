@@ -1,10 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-background: #09090b;
+  --color-surface: #0c0c0f;
+  --color-surface-container: #18181b;
+  --color-surface-lowest: #0c0c0f;
+  --color-border: #27272a;
+  --color-primary: #a78bfa;
+  --color-tertiary: #34d399;
+  --color-error: #ef4444;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --font-serif: var(--font-playfair), serif;
+}
 
 body {
-  background-color: #09090b;
-  color: #fafafa;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
   font-family: var(--font-playfair), serif;
 }
 
@@ -13,25 +25,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card {
-  background-color: #18181b;
-  border: 1px solid #27272a;
+  background-color: var(--color-surface-container);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
 }
 
 .btn-primary {
-  background-color: #a78bfa;
-  color: #09090b;
+  background-color: var(--color-primary);
+  color: var(--color-background);
   border-radius: 8px;
 }
 
 .btn-secondary {
   background-color: transparent;
-  border: 1px solid #27272a;
-  color: #fafafa;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
   border-radius: 8px;
 }
 
 *:focus-visible {
-  outline: 2px solid #a78bfa;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
